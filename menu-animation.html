@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Menu animation</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+			font-family: sans-serif;
+		}
+		.main-menu-slide{
+			position: fixed;
+			left: -254px;
+			width: 250px;
+			height: 100%;
+			background: #57626f;
+			border-right: 4px solid #e0e5ea;
+			transition: .25s;
+		}
+		.main-menu-slide.active{
+			left: 0px;
+		}
+		.main-menu-slide ul li:first-child{
+			text-align: center;
+			color: #fff;
+			font-size: 1.95em;
+			list-style-type: none;
+			padding: 25px 10px 10px 10px;
+		}
+		.main-menu-slide ul li:not(:first-child){
+			width: 90%;
+			margin-left: 10%;
+			font-size: 1.1em;
+			list-style-type: none;
+			padding: 25px 10px 10px 10px;
+		}
+		.main-menu-slide ul li a{
+			color: #dfe5eb;
+			text-decoration: none;
+		}
+		.main-menu-slide ul li a:hover{
+			color: #59e9df;
+		}
+
+		/* gamburger animate */
+		.main-menu-slide .btn-menu{
+			position: absolute;
+			left: 270px;
+			top: 20px;
+			background: #e0e5ea;
+			border-radius: 12px;
+			cursor: pointer;
+			position: relative;
+			width: 50px;
+			height: 50px;
+		}
+		.main-menu-slide .btn-menu:hover{
+			background: #556270;
+		}
+		.main-menu-slide .btn-menu span::before,
+		.main-menu-slide .btn-menu span::after,
+		.main-menu-slide .btn-menu span{
+			position: absolute;
+			top: 50%;
+			margin-top: -1px;
+			left: 50%;
+			margin-left: -10px;
+			width: 20px;
+			height: 2px;
+			background-color: #333;
+			transition: 0.25s;
+		}
+		.main-menu-slide .btn-menu:hover span::before,
+		.main-menu-slide .btn-menu:hover span::after,
+		.main-menu-slide .btn-menu:hover span{
+			background: #fafafa;
+		}
+		.btn-menu span::before,
+		.btn-menu span::after {
+			content: '';
+			display: block;
+			transition: 0.25s;
+		}
+		.main-menu-slide .btn-menu span::before {
+			transform: translateY(-5px);
+		}
+		.main-menu-slide .btn-menu_active span {
+			height: 0;
+		}
+		.main-menu-slide .btn-menu span::after {
+			transform: translateY(5px);
+		}
+
+		.main-menu-slide .btn-menu_active span:before {
+			transform: rotate(-45deg);
+			transform-origin: center;
+		}
+		.main-menu-slide .btn-menu_active span:after {
+			transform: rotate(45deg);
+			transform-origin: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="main-menu-slide">
+		<div class="btn-menu">
+			<span></span>
+		</div>
+		<ul>
+			<li>Меню сайта</li>
+			<li><a href="/">Главная</a></li>
+			<li><a href="/">Контакты</a></li>
+			<li><a href="/">Про нас</a></li>
+		</ul>
+	</div>
+	
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+		$(function(){
+			$('.btn-menu').click(function(){
+				$('.main-menu-slide').toggleClass('active');
+				$('.btn-menu').toggleClass('btn-menu_active');
+			});
+		});
+	</script>
+</body>
+</html>
